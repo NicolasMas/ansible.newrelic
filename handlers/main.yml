@@ -1,0 +1,11 @@
+---
+
+#handlers usually contains the service commands (start, stop, reload etc.)
+# In case services need to be restarted after changing the locales
+- name: restart dependent services
+  service: name={{ item }} state=restarted
+  with_items: dependent_services
+
+# /etc/init.d/newrelic-sysmond start | stop
+- name: newrelic restarted
+  service:  name={{ newrelic_service }} state=restarted

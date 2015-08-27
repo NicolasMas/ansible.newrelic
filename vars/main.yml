@@ -1,0 +1,22 @@
+---
+
+# application variables
+
+# If we need to restart services after the change
+dependent_services: []
+
+newrelic_repository:  'http://yum.newrelic.com/pub/newrelic/el5/x86_64/'
+
+newrelic_service: newrelic-sysmond
+
+# Config files
+# /etc/newrelic/nrsysmond.cfg
+license_key:  'YOUR KEY HERE'
+newrelic_loglevel: info
+newrelic_logfile: /var/log/newrelic/nrsysmond.log
+newrelic_proxy:
+newrelic_ssl: "false"
+newrelic_ssl_ca_bundle: False
+newrelic_ssl_ca_path: False
+newrelic_pidfile: /var/run/newrelic/nrsysmond.pid
+newrelic_collector_host: collector.newrelic.com

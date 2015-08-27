@@ -1,0 +1,22 @@
+---
+
+# Contains the package set of instructions.
+
+# Adding newrelic repo
+  - name: newrelic | Setup repos
+    template: dest=/etc/yum.repos.d/{{item.key}} src="{{item.value}}"
+    with_dict: yum_repos
+
+# If we need specific packages from yum
+  - name: newrelic  |  install additional packages
+    yum: name={{item}}
+    with_items: yum_additional_packages
+
+  - name: newrelic | configuration setup
+    template: dest='/etc/newrelic/nrsysmond.cfg' src='nrsysmond.cfg.j2'
+    notify: newrelic restarted
+
+    #NOTE if you need to restart services,
+    # 1. Fill up the /vars/main.yml dependent_services
+    # 2. Add a <notify restart dependent services > at the end
+    #  of the task which will invoke a handler

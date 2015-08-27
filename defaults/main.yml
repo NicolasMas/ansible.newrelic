@@ -1,0 +1,10 @@
+---
+  # Global switches
+newrelic_enabled: yes
+
+# yum repository
+yum_repos:
+    newrelic.repo: newrelic.repo.j2
+
+# Global yum instruction
+yum_additional_packages:  [newrelic-sysmond]
